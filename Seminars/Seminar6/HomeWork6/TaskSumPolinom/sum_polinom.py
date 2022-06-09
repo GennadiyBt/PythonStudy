@@ -1,10 +1,10 @@
-def convert_in_list(polinom_string):
+def convert_in_list(polinom_string):    # Конвертация многочлена из строки в список
     polinom_string = polinom_string[:-2]
     polinom_list = polinom_string.split('+')
     return polinom_list
 
 
-def negative_out(polinom_string):
+def negative_out(polinom_string): # Преобразование отрицательных коэффициентов для удобства дальнейшей разбивки
     resalt_string = ''
     for i in range (1,len(polinom_string)-1):
         if polinom_string[i] == '-':
@@ -12,7 +12,7 @@ def negative_out(polinom_string):
     return resalt_string
 
 
-def list_in_dict(list_arg):
+def list_in_dict(list_arg): # Создание словаряб где ключ х в соответствующей степени, значение - коэффициент.
     temp_list = []
     for item in list_arg:
         if item[0] == 'x':
@@ -29,14 +29,14 @@ def list_in_dict(list_arg):
     return dikt_polinom
 
 
-def uniq_keys(dikt1, dikt2):
+def uniq_keys(dikt1, dikt2): # Полный список уникальных ключей для двух многочленов
     list_keys = list(dikt1.keys())+list(dikt2.keys())
     list_uniq_keys = sorted(list(set(list_keys)))
     list_uniq_keys.sort(reverse = True)
     return list_uniq_keys
 
 
-def sum_polinoms(test_polinom1, test_polinom2):
+def sum_polinoms(test_polinom1, test_polinom2): # Непосредственное вычисление суммы. На выходе сумма в формате списка.
     list_polinom1 = convert_in_list(negative_out(test_polinom1))
     list_polinom2 = convert_in_list(negative_out(test_polinom2))
     dikt_pol1 = list_in_dict(list_polinom1)
@@ -52,7 +52,7 @@ def sum_polinoms(test_polinom1, test_polinom2):
         result_list.append(temp_list)
     return result_list
 
-def beaut_view(list_arg):
+def beaut_view(list_arg): # Преобразование результата в строку и приведение к удобочитаемому виду
     for i in range(len(list_arg)):
         list_arg[i][0] = str(list_arg[i][0])
     list_arg = list(map('*'.join, list_arg))
